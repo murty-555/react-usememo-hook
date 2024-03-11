@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { useMemo, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [counter, setCounter] = useState(0);
+  const [counter2, setCounter2] = useState(100);
+  const counterSqr = () => {
+    console.log("expensive calculation")
+    return counter * counter
+  }
+
+  // const memoizedSquareValue = useMemo(counterSqr, [counter])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h3>Counter: {counter}</h3>
+      <button onClick={() => setCounter(counter + 1)}>Increment</button>
+      <h3>Counter Square: {counterSqr()}</h3>
+      <br/>
+      <h3>Counter 2: {counter2}</h3>
+      <button onClick={() => setCounter2(counter2 - 1)}>Decrement</button>
     </div>
   );
 }
